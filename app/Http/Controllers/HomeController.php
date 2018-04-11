@@ -9,7 +9,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-class HomeController extends Controller
+class LoginController extends Controller
 {
 	public function getHomepage(){
 		try {
