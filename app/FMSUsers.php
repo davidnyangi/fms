@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class FMSUsers extends Model
 {
-    protected $table = 'fms_users';
+    protected $table = 'dvUsers';
 }

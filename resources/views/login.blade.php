@@ -18,10 +18,10 @@
 
 
 				<form class="login100-form validate-form" method="post" action="/login" id="loginform">
-
+ 					{{ csrf_field() }}
 					<span class="login100-form-title">
 
-						CCBRT ~ FMS ~ Login
+						OpenClinic Data Visualization System
 
 					</span>
 
@@ -31,7 +31,7 @@
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@tif.com">
 
-						<input class="input100" type="text" id="email" name="email" placeholder="Email">
+						<input class="input100" type="text" id="email" name="email" placeholder="Username">
 
 						<span class="focus-input100"></span>
 
@@ -73,7 +73,7 @@
 
 
 
-					<div class="text-center p-t-12">
+					<!-- <div class="text-center p-t-12">
 
 						<span class="txt1">
 
@@ -83,14 +83,14 @@
 
 						<a class="txt2" href="#">
 
-							Email / Password?
+							 Password?
 
 						</a>
 
-					</div>
+					</div> -->
 
 
-
+<!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 					<!-- <div class="text-center p-t-136">
 
 						<a class="txt2" href="#">

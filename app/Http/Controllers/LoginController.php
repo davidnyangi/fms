@@ -25,32 +25,18 @@ class LoginController extends Controller
     	 		"username" => Input::get('email'),
     	 		"password" => Input::get('password')
     	 		);
-    	 	if(($user = FMSUsers::where('Username', '=',$inputs['username'])->first())&&(Hash::check($inputs['password'], $user->Password))){
-    	 		 $role = DB::table('fms_users')->where('Username', $inputs['username'])->value('UserType');
-                 $userDesignation = DB::table('fms_users')->where('Username', $inputs['username'])->value('Designation');
-                 $userlevel = DB::table('fms_users')->where('Username', $inputs['username'])->value('Userlevel');
-                 $loggedusername = DB::table('fms_users')->where('Username', $inputs['username'])->value('Username');
-                 $dbfname = DB::table('fms_users')->where('Username', $inputs['username'])->value('FName');
-                 $dblname = DB::table('fms_users')->where('Username', $inputs['username'])->value('LName');
+    	 	if(($user = FMSUsers::where('username', '=',$inputs['username'])->first())&&(Hash::check($inputs['password'], $user->password))){
+    	 		 $role = DB::table('dvUsers')->where('username', $inputs['username'])->value('UserType');
+         //         $userDesignation = DB::table('fms_users')->where('Username', $inputs['username'])->value('Designation');
+         //         $userlevel = DB::table('fms_users')->where('Username', $inputs['username'])->value('Userlevel');
+                 $loggedusername = DB::table('dvUsers')->where('username', $inputs['username'])->value('username');
+                 $dbfname = DB::table('dvUsers')->where('username', $inputs['username'])->value('Firstname');
+                 $dblname = DB::table('dvUsers')->where('username', $inputs['username'])->value('Lastname');
                  $dbname = $dbfname.' '.$dblname;
     	 		 	if($role=='Admin'){
                         Session::put('fullname', $dbname);
                         Session::put('username', $loggedusername);
-                        Session::put('userDesignation', $userDesignation);
-                         Session::put('level', $userlevel);
                        return response()->json(['redirect'=> 'dashboard']);
-                    }else if($role=='Accountant'){
-                        Session::put('fullname', $dbname);
-                        Session::put('username', $loggedusername);
-                        Session::put('userDesignation', $userDesignation);
-                        Session::put('level', $userlevel);
-                        return response()->json(['redirect'=> 'accountant']);
-                    }else if($role=='Secretary'){
-                        Session::put('fullname', $dbname);
-                        Session::put('username', $loggedusername);
-                        Session::put('userDesignation', $userDesignation);
-                        Session::put('level', $userlevel);
-                        return response()->json(['redirect'=> 'secretary']);
                     }
     	 	}else{
     	 		return response()->json(['error'=> 'Wrong Credentials Entered!'],500);
